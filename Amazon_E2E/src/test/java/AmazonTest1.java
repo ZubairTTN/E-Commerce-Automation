@@ -30,8 +30,7 @@ public class AmazonTest1 extends Base {
     }
 
     @Test(priority = 3)
-    public void addToCartFunc()
-    {
+    public void addToCartFunc() throws InterruptedException {
         CartPage cartPage = new CartPage(driver, wait);
         cartPage.checkCart();
         cartPage.checkOutFunc();

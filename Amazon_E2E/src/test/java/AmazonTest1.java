@@ -12,6 +12,16 @@ public class AmazonTest1 extends Base {
         searchPage.selectProduct(7);
 
         ProductPage productPage = new ProductPage(driver, wait);
+//        String productTitle = productPage.getProductTitle();
+//        Assert.assertNotNull(productTitle, "Product title should not be null");
+//        Assert.assertTrue(productTitle.length() > 0, "Product title should not be empty");
+//
+//        // Get and verify product price
+//        String productPrice = productPage.getProductPrice();
+//        Assert.assertNotNull(productPrice, "Product price should not be null");
+//        Assert.assertTrue(productPrice.length() > 0, "Product price should not be empty");
+//        Assert.assertTrue(productPrice.matches("\\d+"), "Product price should contain only numbers");
+
         productPage.addToCartFunc();
     }
 
@@ -24,6 +34,18 @@ public class AmazonTest1 extends Base {
         searchPage.selectProduct(2);
 
         ProductPage productPage = new ProductPage(driver, wait);
+
+//        Below code is
+//        String productTitle = productPage.getProductTitle();
+//        Assert.assertNotNull(productTitle, "Product title should not be null");
+//        Assert.assertTrue(productTitle.length() > 0, "Product title should not be empty");
+//        Assert.assertTrue(productTitle.toLowerCase().contains("samsung"), "Product title should contain 'Samsung'");
+//
+//        // Get and verify product price
+//        String productPrice = productPage.getProductPrice();
+//        Assert.assertNotNull(productPrice, "Product price should not be null");
+//        Assert.assertTrue(productPrice.length() > 0, "Product price should not be empty");
+//        Assert.assertTrue(productPrice.matches("\\d+"), "Product price should contain only numbers");
         productPage.addToCartFunc();
     }
 

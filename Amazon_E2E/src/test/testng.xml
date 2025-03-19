@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Amazon E2E Test Suite">
+    
+    <!-- Global Parameters -->
+    <parameter name="browser" value="chrome"/>
+    <parameter name="implicitWait" value="10"/>
+    <parameter name="explicitWait" value="20"/>
+    <parameter name="baseUrl" value="https://www.amazon.com"/>
+    
+    <!-- Test Groups -->
+    <test name="Search Functionality Tests">
+        <groups>
+            <run>
+                <include name="search"/>
+                <include name="regression"/>
+            </run>
+            <exclude>
+                <exclude name="broken"/>
+            </exclude>
+        </groups>
+        <classes>
+            <class name="AmazonTest1">
+                <methods>
+                    <include name="searchAndToCart1"/>
+                    <include name="searchAndToCart2"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Cart Functionality Tests">
+        <groups>
+            <run>
+                <include name="cart"/>
+                <include name="regression"/>
+            </run>
+            <exclude>
+                <exclude name="broken"/>
+            </exclude>
+        </groups>
+        <classes>
+            <class name="AmazonTest1">
+                <methods>
+                    <include name="addToCartFunc"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Parallel Test Execution -->
+    <test name="Parallel Tests" parallel="methods" thread-count="2">
+        <groups>
+            <run>
+                <include name="parallel"/>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Dependencies -->
+    <test name="Dependent Tests">
+        <groups>
+            <dependencies>
+                <group name="cart" depends-on="search"/>
+            </dependencies>
+        </groups>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Listeners -->
+    <listeners>
+        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
+        <listener class-name="org.testng.reporters.XMLReporter"/>
+        <listener class-name="org.testng.reporters.JUnitXMLReporter"/>
+    </listeners>
+
+    <!-- Test Configuration -->
+    <test name="Configuration Tests">
+        <parameter name="testData" value="testData.xml"/>
+        <classes>
+            <class name="AmazonTest1">
+                <methods>
+                    <include name=".*"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Retry Configuration -->
+    <test name="Retry Tests">
+        <classes>
+            <class name="AmazonTest1">
+                <methods>
+                    <include name=".*"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Before and After Suite Configuration -->
+    <suite-files>
+        <suite-file path="before-suite.xml"/>
+        <suite-file path="after-suite.xml"/>
+    </suite-files>
+
+    <!-- Test Execution Order -->
+    <test name="Ordered Tests">
+        <classes>
+            <class name="AmazonTest1">
+                <methods>
+                    <include name="searchAndToCart1"/>
+                    <include name="searchAndToCart2"/>
+                    <include name="addToCartFunc"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Data Provider Tests -->
+    <test name="Data Provider Tests">
+        <parameter name="dataFile" value="testData.csv"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Environment Specific Tests -->
+    <test name="Environment Tests">
+        <parameter name="env" value="staging"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Performance Tests -->
+    <test name="Performance Tests">
+        <parameter name="timeout" value="5000"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Security Tests -->
+    <test name="Security Tests">
+        <parameter name="securityLevel" value="high"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Cross Browser Tests -->
+    <test name="Cross Browser Tests">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Mobile Tests -->
+    <test name="Mobile Tests">
+        <parameter name="device" value="iPhone"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- API Tests -->
+    <test name="API Tests">
+        <parameter name="apiVersion" value="v1"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Database Tests -->
+    <test name="Database Tests">
+        <parameter name="dbConnection" value="testDB"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- UI Tests -->
+    <test name="UI Tests">
+        <parameter name="resolution" value="1920x1080"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Integration Tests -->
+    <test name="Integration Tests">
+        <parameter name="integration" value="true"/>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Smoke Tests -->
+    <test name="Smoke Tests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+    <!-- Regression Tests -->
+    <test name="Regression Tests">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="AmazonTest1"/>
+        </classes>
+    </test>
+
+</suite> 

@@ -6,42 +6,44 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import java.util.List;
 
 public class CartPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    private By removeItemBut = By.cssSelector("input[value='Delete']");
     private By cartButton = By.id("nav-cart-text-container");
     private By checkOut = By.xpath("//input[@name='proceedToRetailCheckout']");
-    public CartPage(WebDriver driver, WebDriverWait wait)
-    {
+
+    public CartPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
     }
-    public void checkCart() throws InterruptedException {
-        WebElement cartB = wait.until(ExpectedConditions.visibilityOfElementLocated(cartButton));
-        Thread.sleep(3000);
+
+    public void checkCart() {
+        WebElement cartB = wait.until(ExpectedConditions.elementToBeClickable(cartButton));
         cartB.click();
     }
 
-    public boolean PageLoadCheck()
-    {
+    public boolean PageLoadCheck() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(checkOut)).isDisplayed();
     }
 
-    public void checkOutFunc() throws InterruptedException {
-        WebElement chechO = wait.until(ExpectedConditions.elementToBeClickable(checkOut));
-        Thread.sleep(3000);
-        chechO.click();
+    public void checkOutFunc() {
+        WebElement checkO = wait.until(ExpectedConditions.elementToBeClickable(checkOut));
+        checkO.click();
     }
 
-    public boolean checkOutPageVerify() throws InterruptedException {
-        Thread.sleep(3000);
+    public void removeProduct() {
         checkCart();
-        return wait.until(ExpectedConditions.elementToBeClickable(checkOut)) != null;
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(removeItemBut));
+        if (!buttons.isEmpty()) {
+            buttons.get(0).click();
+        }
     }
 
-
-
+    public boolean checkOutPageVerify() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(checkOut)).isDisplayed();
+    }
 }

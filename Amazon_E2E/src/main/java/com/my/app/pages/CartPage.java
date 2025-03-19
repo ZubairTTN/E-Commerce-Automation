@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class CartPage {
     private WebDriver driver;
     private WebDriverWait wait;
@@ -17,9 +19,9 @@ public class CartPage {
         this.driver = driver;
         this.wait = wait;
     }
-    public void checkCart()
-    {
+    public void checkCart() throws InterruptedException {
         WebElement cartB = wait.until(ExpectedConditions.visibilityOfElementLocated(cartButton));
+        Thread.sleep(3000);
         cartB.click();
     }
 
@@ -28,14 +30,14 @@ public class CartPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(checkOut)).isDisplayed();
     }
 
-    public void checkOutFunc()
-    {
+    public void checkOutFunc() throws InterruptedException {
         WebElement chechO = wait.until(ExpectedConditions.elementToBeClickable(checkOut));
+        Thread.sleep(3000);
         chechO.click();
     }
 
-    public boolean checkOutPageVerify()
-    {
+    public boolean checkOutPageVerify() throws InterruptedException {
+        Thread.sleep(3000);
         checkCart();
         return wait.until(ExpectedConditions.elementToBeClickable(checkOut)) != null;
     }

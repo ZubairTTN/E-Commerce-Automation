@@ -4,6 +4,7 @@
     <test name="AmazonCartTests">
         <classes>
             <class name="AmazonTest1"/>
+
         </classes>
     </test>
 </suite>

@@ -17,8 +17,9 @@ public class ProductPage {
         this.wait = wait;
     }
 
-    public void addToCartFunc()
-    {
+    public void addToCartFunc() throws InterruptedException {
+        Thread.sleep(2000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartB)).click();
+        Thread.sleep(2000);
     }
 }

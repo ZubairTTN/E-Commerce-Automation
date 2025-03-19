@@ -21,11 +21,11 @@ public class SearchPage {
         this.wait = wait;
     }
 
-    public void selectProduct(int index)
-    {
+    public void selectProduct(int index) throws InterruptedException {
         List<WebElement> productL = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(products));
         if(productL.size() > index)
         {
+            Thread.sleep(2000);
             productL.get(index).findElement(By.xpath("(//div[@class='puisg-col-inner'])[7]")).click();
         }
     }

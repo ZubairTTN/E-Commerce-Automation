@@ -4,8 +4,7 @@ import org.testng.annotations.Test;
 
 public class AmazonTest1 extends Base {
     @Test(priority = 1)
-    public void searchAndToCart1()
-    {
+    public void searchAndToCart1() throws InterruptedException {
         HomePage homePage = new HomePage(driver, wait);
         homePage.searchProduct("Gaming Monitor");
 
@@ -17,8 +16,7 @@ public class AmazonTest1 extends Base {
     }
 
     @Test(priority = 2)
-    public void searchAndToCart2()
-    {
+    public void searchAndToCart2() throws InterruptedException {
         HomePage homePage = new HomePage(driver, wait);
         homePage.searchProduct("Samsung S24");
 
